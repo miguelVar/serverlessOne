@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@1.0
   serverless: circleci/serverless-framework@1.0
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 jobs:
   one:
     executor: serverless/default
@@ -12,7 +13,10 @@ jobs:
       - run: npm install
       - run: npm test
       - run: sls deploy
+      - sonarcloud/scan
 workflows:
   one_and_two:
     jobs:
       - one
+      - build:
+          context: SonarCloud
