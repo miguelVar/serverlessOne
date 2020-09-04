@@ -9,11 +9,12 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup
+      - sonarcloud/scan
       - serverless/setup
       - run: npm install
       - run: npm test
       - run: sls deploy
-      - sonarcloud/scan
+      
 workflows:
   one_and_two:
     jobs:
