@@ -20,5 +20,4 @@ workflows:
   one_and_two:
     jobs:
       - one
-      - build:
-          context: SonarCloud
+        context: SonarCloud
